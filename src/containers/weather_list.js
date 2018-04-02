@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 class WeatherList extends Component {
-    renderWeather() {
+    renderWeather(cityData) {
+        const name = cityData.city.name;
         return (
-            <tr> 
-                <td> </td>
+            <tr key={name}> 
+                <td>{name} </td>
             </tr>
         )
     }
@@ -21,9 +22,9 @@ class WeatherList extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.weather.map(this.renderWeather)}
                 </tbody>
             </table>
+            <table> </table>
         );
     }
 }
@@ -32,6 +33,7 @@ function mapStateToProps(state) {
     return {
         weather: state.weather
     };
+    console.log(state.weather)
 }
 
 export default connect(mapStateToProps)(WeatherList)
